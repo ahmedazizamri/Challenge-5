@@ -40,7 +40,7 @@ export default function FlashCards() {
   return (
     <div className="cards">
       {Cards.map((ele) => (
-        <Card obj={ele} />
+        <Card obj={ele} key={ele.question} />
       ))}
     </div>
   );
