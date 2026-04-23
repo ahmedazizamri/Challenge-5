@@ -40,27 +40,23 @@ export default function FlashCards() {
   return (
     <div className="cards">
       {Cards.map((ele) => (
-        <Card obj={ele} key={ele.question} />
+        <Card obj={ele} key={ele.id} />
       ))}
     </div>
   );
 }
 
 function Card({ obj }) {
-  const [content, setContent] = useState(obj.question);
-  function showAnswer() {
-    setContent(obj.answer);
-  }
-  function showQuestion() {
-    setContent(obj.question);
+  const [selectId, setSelectId] = useState(null);
+  function handleClick(id) {
+    setSelectId(id !== selectId ? id : null);
   }
   return (
     <div
-      className={content === obj.question ? "question" : "answer"}
-      onClick={showAnswer}
-      onMouseLeave={showQuestion}
+      onClick={() => handleClick(obj.id)}
+      className={`${obj.id === selectId ? "answer" : "question"}`}
     >
-      {content}
+      {obj.id === selectId ? obj.answer : obj.question}
     </div>
   );
 }
